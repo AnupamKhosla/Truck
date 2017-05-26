@@ -1,6 +1,8 @@
     ;(function(window, document, $, undefined) {
 
-        var possibleCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var possibleCharacters = "ABCDGHIJKLMNPQRSTUVWXYZabcdefghkmnpqrstuvwxyz123456789";
+
+        //removed following characters: i j E F O l o 0
 
         var defaults = {
 
@@ -109,7 +111,7 @@
             },
 
             validate: function(userText) {
-                if (userText === this._settings.text) {
+                if (userText.toUpperCase() === this._settings.text.toUpperCase()) {
                     this._settings.onSuccess();
                 } else {
                     this._settings.onFailure();
@@ -136,7 +138,7 @@
 
             _generateRandomText: function() {
                 this._settings.text = '';
-                var length = Math.floor((Math.random() * 3) + 6);
+                var length = 5; //Math.floor((Math.random() * 3) + 6);
                 for (var i = 0; i < length; i++) {
                     this._settings.text += possibleCharacters.charAt(Math.floor(Math.random() * possibleCharacters.length));
                 }
